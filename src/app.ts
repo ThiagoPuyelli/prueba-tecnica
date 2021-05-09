@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction, Express } from "express";
 import morgan from "morgan";
 import courseRoutes from "./routes/course.routes";
 import sectionRoutes from "./routes/section.routes";
+import partRoutes from "./routes/part.routes";
 const app = express();
 
 export default (): Express => {
@@ -27,6 +28,7 @@ export default (): Express => {
 
     app.use(courseRoutes);
     app.use(sectionRoutes);
+    app.use(partRoutes);
 
     // RETURN
     

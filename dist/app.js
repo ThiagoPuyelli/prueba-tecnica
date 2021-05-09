@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const course_routes_1 = __importDefault(require("./routes/course.routes"));
 const section_routes_1 = __importDefault(require("./routes/section.routes"));
+const part_routes_1 = __importDefault(require("./routes/part.routes"));
 const app = express_1.default();
 exports.default = () => {
     // PORT
@@ -26,6 +27,7 @@ exports.default = () => {
     // ROUTES
     app.use(course_routes_1.default);
     app.use(section_routes_1.default);
+    app.use(part_routes_1.default);
     // RETURN
     return app;
 };

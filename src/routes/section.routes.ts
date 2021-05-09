@@ -1,6 +1,6 @@
 import { Router } from "express";
 const router = Router();
-import { deleteSection, getSection, getSections, saveSection, updateSection } from "../controllers/sections.controllers";
+import { deleteSection, getSection, getSections, saveSection, updateSection } from "../controllers/section.controllers";
 import findCourse from "../middlewares/findCourse";
 
 router.put("/section/:id", findCourse("id"), saveSection);
