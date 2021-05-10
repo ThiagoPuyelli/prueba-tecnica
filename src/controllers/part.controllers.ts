@@ -29,7 +29,7 @@ export var getParts = async (req: Request, res: Response) => res.json(req.body.c
 export var getPart = async (req: Request, res: Response) => {
     const { course, sectionIndex } = req.body;
 
-    const part = course.sections[sectionIndex].parts.find((part: any) => part._id = req.params.partID);
+    const part = course.sections[sectionIndex].parts[parseInt(req.params.position) - 1];
     if(!part) return res.json({error: "La parte no existe"})
 
     res.json(part);

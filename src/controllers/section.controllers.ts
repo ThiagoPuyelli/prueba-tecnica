@@ -27,7 +27,7 @@ export var getSections = async (req: Request, res: Response) => res.json(req.bod
 
 export var getSection = async (req: Request, res: Response) => {
     
-    const section = req.body.course.sections.find((element: any) => element._id = req.params.sectionID);
+    const section = req.body.course.sections[parseInt(req.params.position) - 1];
     if(!section) return res.json({error: "La sección no existe"});
 
     res.json(section)
@@ -35,12 +35,12 @@ export var getSection = async (req: Request, res: Response) => {
 
 export var updateSection = async (req: Request, res: Response) => {
     const { course } = req.body;
+    const { position } = req.params;
 
     // Se encuentra la seccion y se modifica
-    const section = req.body.course.sections.find((element: any) => element._id = req.params.sectionID);
     for(let i in req.body){
         if(i == "description" || i == "title"){
-            section[i] = req.body[i]
+            req.body.course.sections[parseInt(position) - 1][i] = req.body[i]
         }
     }
 

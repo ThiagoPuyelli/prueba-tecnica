@@ -35,7 +35,7 @@ exports.saveSection = saveSection;
 var getSections = (req, res) => __awaiter(void 0, void 0, void 0, function* () { return res.json(req.body.course.sections); });
 exports.getSections = getSections;
 var getSection = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const section = req.body.course.sections.find((element) => element._id = req.params.sectionID);
+    const section = req.body.course.sections[parseInt(req.params.position) - 1];
     if (!section)
         return res.json({ error: "La sección no existe" });
     res.json(section);
@@ -43,11 +43,11 @@ var getSection = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getSection = getSection;
 var updateSection = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { course } = req.body;
+    const { position } = req.params;
     // Se encuentra la seccion y se modifica
-    const section = req.body.course.sections.find((element) => element._id = req.params.sectionID);
     for (let i in req.body) {
         if (i == "description" || i == "title") {
-            section[i] = req.body[i];
+            req.body.course.sections[parseInt(position) - 1][i] = req.body[i];
         }
     }
     // Se almacena

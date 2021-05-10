@@ -36,7 +36,7 @@ var getParts = (req, res) => __awaiter(void 0, void 0, void 0, function* () { re
 exports.getParts = getParts;
 var getPart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { course, sectionIndex } = req.body;
-    const part = course.sections[sectionIndex].parts.find((part) => part._id = req.params.partID);
+    const part = course.sections[sectionIndex].parts[parseInt(req.params.position) - 1];
     if (!part)
         return res.json({ error: "La parte no existe" });
     res.json(part);

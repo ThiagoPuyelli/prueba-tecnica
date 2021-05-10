@@ -3,37 +3,41 @@ import multer from "../middlewares/multer";
 import findCourse from "../middlewares/findCourse";
 import findSection from "../middlewares/findSection";
 import { deletePart, getPart, getParts, savePart, updatePart } from "../controllers/part.controllers";
+import { partJoi } from "../joi/course.joi";
+import validateData from "../middlewares/validateData";
 const router = Router();
 
-router.put("/part/:courseID/:sectionID", 
+router.put("/part/:courseID/:positionSection", 
         multer("file").single("file"),
+        validateData(partJoi),
         findCourse("courseID"), 
-        findSection("sectionID"), 
+        findSection("positionSection"), 
         savePart
 );
 
-router.get("/part/:courseID/:sectionID",
+router.get("/part/:courseID/:positionSection",
         findCourse("courseID"),
-        findSection("sectionID"),
+        findSection("positionSection"),
         getParts
 );
 
-router.get("/part/:courseID/:sectionID/:partID",
+router.get("/part/:courseID/:positionSection/:position",
         findCourse("courseID"),
-        findSection("sectionID"),
+        findSection("positionSection"),
         getPart
 );
 
-router.put("/part/:courseID/:sectionID/:position",
+router.put("/part/:courseID/:positionSection/:position",
         multer("file").single("file"),
+        validateData(partJoi),
         findCourse("courseID"),
-        findSection("sectionID"),
+        findSection("positionSection"),
         updatePart
 );
 
-router.delete("/part/:courseID/:sectionID/:position",
+router.delete("/part/:courseID/:positionSection/:position",
         findCourse("courseID"),
-        findSection("sectionID"),
+        findSection("positionSection"),
         deletePart
 );
 
